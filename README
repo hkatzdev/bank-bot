@@ -1,0 +1,10 @@
+PROHACKS
+
+Bank Bot Rewrite, yada yada TODO make a good readme
+
+Uses the following libraries
+
+slack_verify
+oak
+
+Also a bunch of the deno STD
