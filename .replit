@@ -1,2 +1,3 @@
+/* I don't have a personal server so this allows me to test - ignore */
 language = "deno"
 run = "deno run --allow-all ./mod.ts"
