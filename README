@@ -4,7 +4,8 @@ Bank Bot Rewrite, yada yada TODO make a good readme
 
 Uses the following libraries
 
-slack_verify
+verify_slack
 oak
+oak_middleware
 
 Also a bunch of the deno STD
