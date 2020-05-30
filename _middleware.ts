@@ -7,7 +7,7 @@ import {
 } from "./deps.ts";
 
 export const rawBodyState: Middleware = async (context, next) => {
-  decode(
+  context.state.body = decode(
     await Deno.readAll(
       (await (context.request.body({
         asReader: true,
