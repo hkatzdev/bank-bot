@@ -8,14 +8,14 @@ import {
 } from "./_responseTimeHeader.ts";
 
 import {
-    textBodyState,
-    verifySlackHeader,
-    verifyAPI,
-} from "./_middleware.ts"
+  rawBodyState,
+  verifySlackHeader,
+  verifyAPI,
+} from "./_middleware.ts";
 
 const router = new Router();
 router
-  .post("/", textBodyState, verifySlackHeader, verifyAPI, (context, next) => {
+  .post("/", rawBodyState, verifySlackHeader, verifyAPI, (context, next) => {
     const jsonBody = JSON.parse(context.state.body);
     context.response.body = jsonBody.challenge;
   });

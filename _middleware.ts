@@ -1,16 +1,19 @@
 import {
+  decode,
   Status,
   Middleware,
   ErrorStatus,
   verifySlackRequest,
 } from "./deps.ts";
 
-export const textBodyState: Middleware = async (context, next) => {
-  context.state.body = await (context.request.body({
-    contentTypes: {
-      text: ["application/javascript"],
-    },
-  }) || "");
+export const rawBodyState: Middleware = async (context, next) => {
+  decode(
+    await Deno.readAll(
+      (await (context.request.body({
+        asReader: true,
+      }))).value,
+    ),
+  );
   await next();
 };
 

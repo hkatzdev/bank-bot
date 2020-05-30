@@ -12,3 +12,7 @@ export {
 export {
   Status,
 } from "https://deno.land/std@0.51.0/http/http_status.ts";
+
+export {
+  decode,
+} from "https://deno.land/std@0.54.0/encoding/utf8.ts";
