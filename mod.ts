@@ -15,10 +15,27 @@ import {
 
 const router = new Router();
 router
-  .post("/", rawBodyState, verifySlackHeader, verifyAPI, (context, next) => {
-    const jsonBody = JSON.parse(context.state.body);
-    context.response.body = jsonBody.challenge;
-  });
+  .get(
+    "/",
+    async (context, _) => {
+      context.response.redirect(
+        "https://github.com/hkatzdev/bank-bot/tree/prohacks",
+      );
+    },
+  )
+  .get("/ping", async (context, _) => {
+    context.response.body = "pong!";
+  })
+  .post(
+    "/events",
+    rawBodyState,
+    verifySlackHeader,
+    verifyAPI,
+    async (context, _) => {
+      const jsonBody = JSON.parse(context.state.body);
+      context.response.body = jsonBody.challenge;
+    },
+  );
 
 const app = new Application();
 app.use(responseTimeHeader);
