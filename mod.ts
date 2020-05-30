@@ -17,13 +17,13 @@ const router = new Router();
 router
   .get(
     "/",
-    async (context, _) => {
+    async (context) => {
       context.response.redirect(
         "https://github.com/hkatzdev/bank-bot/tree/prohacks",
       );
     },
   )
-  .get("/ping", async (context, _) => {
+  .get("/ping", async (context) => {
     context.response.body = "pong!";
   })
   .post(
@@ -31,7 +31,7 @@ router
     rawBodyState,
     verifySlackHeader,
     verifyAPI,
-    async (context, _) => {
+    async (context) => {
       const jsonBody = JSON.parse(context.state.body);
       context.response.body = jsonBody.challenge;
     },
