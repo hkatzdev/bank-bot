@@ -17,12 +17,15 @@ const router = new Router();
 router
   .get(
     "/",
-    async (context, _) =>
+    async (context, _) => {
       context.response.redirect(
         "https://github.com/hkatzdev/bank-bot/tree/prohacks",
-      ),
+      );
+    },
   )
-  .get("/ping", async (context, _) => context.response.body = "pong!")
+  .get("/ping", async (context, _) => {
+    context.response.body = "pong!";
+  })
   .post(
     "/events",
     rawBodyState,
