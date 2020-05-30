@@ -2,6 +2,8 @@ PROHACKS
 
 Bank Bot Rewrite, yada yada TODO make a good readme
 
+Header secret checking now works
+
 Uses the following libraries
 
 verify_slack
