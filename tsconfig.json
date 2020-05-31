@@ -1,0 +1,12 @@
+// My standard config for stricter checking because I don't usually use linters, so ignore this file
+// For reference this is going to be my first time using deno linters though so count those :p
+{
+  "compilerOptions": {
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
