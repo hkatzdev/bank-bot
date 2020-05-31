@@ -4,6 +4,7 @@ export {
 
 export {
   Router,
+  helpers,
   Middleware,
   ErrorStatus,
   Application,
@@ -16,3 +17,7 @@ export {
 export {
   decode,
 } from "https://deno.land/std@0.54.0/encoding/utf8.ts";
+
+export {
+  Airtable,
+} from "https://deno.land/x/airtable@v0.2.0/mod.ts";
