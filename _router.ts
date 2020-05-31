@@ -34,7 +34,7 @@ router
   )
   // Legacy Banker API
   .post("/give", async (context) => {
-    const jsonBody = await context.request.body();
+    
     const fixedBody = {
       payer: jsonBody.bot_id || jsonBody.give_id,
       receiver: jsonBody.send_id,
