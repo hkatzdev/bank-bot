@@ -33,6 +33,7 @@ export const jsonBody: Middleware = async (context, next) => {
   } catch {
     context.throw(Status.BadRequest);
   }
+  context.state.body = jsonBody;
   await next();
 };
 
