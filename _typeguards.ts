@@ -12,6 +12,7 @@ interface Users {
 }
 
 export const isUsers = (object: unknown): object is Users => {
+  if (!object) return false;
   const tester = object as Users;
   return object && (!tester.lower || typeof tester.lower === "number") &&
     (!tester.upper || typeof tester.upper === "number");
@@ -32,6 +33,7 @@ interface Payment {
 }
 
 export const isPayment = (object: unknown): object is Payment => {
+  if (!object) return false;
   const tester = object as Payment;
   return typeof tester.payer === "string" &&
     typeof tester.receiver === "string" &&
