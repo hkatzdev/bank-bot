@@ -26,6 +26,16 @@ export const verifySlackHeader: Middleware = async (context, next) => {
   else context.throw(status as ErrorStatus);
 };
 
+export const jsonBody: Middleware = async (context, next) => {
+  let jsonBody;
+  try {
+    jsonBody = JSON.parse(context.state.body);
+  } catch {
+    context.throw(Status.BadRequest);
+  }
+  await next();
+};
+
 // For Hackathon Judging Purposes ignore this function (verifyAPI) - this is a requirement of the Hack Club slack.
 export const verifyAPI: Middleware = async (context, next) => {
   const check = await fetch("https://slack.hosted.hackclub.com", {
