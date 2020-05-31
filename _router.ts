@@ -15,6 +15,10 @@ import {
   Payment,
 } from "./_typeguards.ts";
 
+import {
+  ank_router,
+} from "./_ank.ts";
+
 const router = new Router();
 router
   .get(
@@ -59,6 +63,6 @@ router
       "Will never be implemented due to potential abuse - url reserved for legacy purposes";
   })
   // New Ank API
-  .use("/api");
+  .use("/api", ank_router.routes(), ank_router.allowedMethods());
 
 export { router };
