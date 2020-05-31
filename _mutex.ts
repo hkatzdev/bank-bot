@@ -6,7 +6,7 @@ class Mutex {
     return this.#lock;
   }
 
-  async lock(): () => unknown {
+  async lock(): Promise<() => unknown> {
     let resolve: () => unknown;
     const lock = await new Promise(res => resolve = res);
     this.#lock = this.#lock.then(lock);
