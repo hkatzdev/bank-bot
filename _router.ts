@@ -4,9 +4,10 @@ import {
 } from "./deps.ts";
 
 import {
+  jsonBody,
+  verifyAPI,
   rawBodyState,
   verifySlackHeader,
-  verifyAPI,
 } from "./_middleware.ts";
 
 const router = new Router();

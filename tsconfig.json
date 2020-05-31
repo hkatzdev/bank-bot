@@ -7,6 +7,13 @@
     "noUnusedParameters": true,
     "removeComments": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "plugins": [
+      {
+        "name": "typescript-deno-plugin",
+        "enable": true, // default is `true`
+        "importmap": "import_map.json"
+      }
+    ]
   }
 }
