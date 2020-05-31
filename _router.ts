@@ -10,6 +10,11 @@ import {
   verifySlackHeader,
 } from "./_middleware.ts";
 
+import {
+  isLegacy,
+  Payment,
+} from "./_typeguards.ts";
+
 const router = new Router();
 router
   .get(
@@ -27,6 +32,7 @@ router
     "/events",
     rawBodyState,
     verifySlackHeader,
+    jsonBody,
     verifyAPI,
     async (context) => {
       const jsonBody = JSON.parse(context.state.body);
@@ -34,14 +40,18 @@ router
     },
   )
   // Legacy Banker API
-  .post("/give", async (context) => {
-    const fixedBody = {
-      payer: jsonBody.bot_id || jsonBody.give_id,
-      receiver: jsonBody.send_id,
-      amount: jsonBody.gp,
-      key: jsonBody.token,
-      reason: jsonBody.reason,
-    };
+  .post("/give", rawBodyState, jsonBody, verifyAPI, async (context) => {
+    const body = context.state.body;
+    if (isLegacy(body)) {
+      const fixedBody: Payment = {
+        payer: body.bot_id,
+        receiver: body.send_id,
+        amount: body.gp,
+        key: body.token,
+      };
+      if (body.reason) fixedBody.reason = body.reason;
+      true;
+    } else context.throw(Status.BadRequest);
   })
   .post("/fine", async (context) => {
     context.response.status = Status.Gone;

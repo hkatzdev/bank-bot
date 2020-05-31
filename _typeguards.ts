@@ -1,4 +1,4 @@
-interface Balance {
+export interface Balance {
   id: string;
 }
 
@@ -6,7 +6,7 @@ export const isBalance = (object: unknown): object is Balance => {
   return object && typeof (object as Balance).id === "string";
 };
 
-interface Users {
+export interface Users {
   lower?: number;
   upper?: number;
 }
@@ -18,13 +18,13 @@ export const isUsers = (object: unknown): object is Users => {
     (!tester.upper || typeof tester.upper === "number");
 };
 
-interface StartAmt {}
+export interface StartAmt {}
 
 export const isStartAmt = (object: unknown): object is StartAmt => {
   return !!object;
 };
 
-interface Payment {
+export interface Payment {
   payer: string;
   receiver: string;
   amount: number;
