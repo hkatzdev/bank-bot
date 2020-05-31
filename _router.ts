@@ -4,9 +4,10 @@ import {
 } from "./deps.ts";
 
 import {
+  jsonBody,
+  verifyAPI,
   rawBodyState,
   verifySlackHeader,
-  verifyAPI,
 } from "./_middleware.ts";
 
 const router = new Router();
@@ -34,7 +35,6 @@ router
   )
   // Legacy Banker API
   .post("/give", async (context) => {
-    
     const fixedBody = {
       payer: jsonBody.bot_id || jsonBody.give_id,
       receiver: jsonBody.send_id,
