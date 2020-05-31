@@ -27,6 +27,7 @@ router
     "/events",
     rawBodyState,
     verifySlackHeader,
+    jsonBody,
     verifyAPI,
     async (context) => {
       const jsonBody = JSON.parse(context.state.body);
@@ -34,7 +35,7 @@ router
     },
   )
   // Legacy Banker API
-  .post("/give", async (context) => {
+  .post("/give", rawBodyState, jsonBody, verifyAPI, async (context) => {
     const fixedBody = {
       payer: jsonBody.bot_id || jsonBody.give_id,
       receiver: jsonBody.send_id,
