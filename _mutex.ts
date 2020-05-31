@@ -6,5 +6,4 @@ class Mutex {
     this.#lock = Promise.resolve(lel);
     return T;
   }
-  
 }

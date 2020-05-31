@@ -3,6 +3,10 @@ function isLegacy(object: unknown): unknown is string {
   return (pet as Fish).swim !== undefined;
 }
 
-const safeJson = (body: Body): unknown => {
+const safeJson = <T>(object: unknown): object is T => {
+  const tester = object as T;
+  for (const P in keyof T) {
+
+  }
   return (pet as Fish).swim !== undefined;
 };
