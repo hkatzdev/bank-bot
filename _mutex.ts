@@ -1,29 +1,28 @@
+// Adapted from https://spin.atomicobject.com/2018/09/10/javascript-concurrency/
+// For Hackathon purposes this is basically a library
 class Mutex {
   #lock = Promise.resolve();
 
-  safeCall<T>(call: PromiseLike<T>): Promise<T> {
-    this.#lock = this.#lock.then(call);
-    return this.#lock;
-  }
+  lock(): PromiseLike<() => void> {
+    let begin: (unlock: () => void) => void = (unlock) => {};
 
-  async lock(): Promise<() => unknown> {
-    let resolve: () => unknown;
-    const lock = await new Promise(res => resolve = res);
-    this.#lock = this.#lock.then(lock);
-    return resolve;
-  }
+    this.lock = this.lock.then(() => {
+      return new Promise(begin);
+    });
 
-  release(): void {
-
+    return new Promise((res) => {
+      begin = res;
+    });
   }
 }
 
 const map: Record<string, Mutex> = {};
 
-const safeCall = async <T>(users: string[], call: PromiseLike<T>): Promise<T> {
+const safeUserCheck = async (users: string[], resolve) => {
   const allMutex = [];
   for (const user of users) {
     let mutex = map.user;
     if (!mutex) mutex = map.user = new Mutex();
+    await mutex.lock();
   }
-}
+};
